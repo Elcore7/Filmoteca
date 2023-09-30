@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Filmoteca</string>
+    <string name="PATRICK">His name\'s Patrick</string>
+    <string name='IR_WEB'>Go to our web</string>
+    <string name='SOPORTE'>Get support</string>
+    <string name='VOLVER'>Go back</string>
+    <string name='NO_FUNC_ERROR'>Not implemented yet</string>
+    <string name='VER_PELICULA'>Watch film %1$s</string>
+    <string name='ACERCA_DE'>About us</string>
+</resources>
