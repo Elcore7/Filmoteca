@@ -2,6 +2,7 @@ package es.ua.eps.filmoteca
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -33,15 +34,19 @@ class FilmDataActivity : AppCompatActivity() {
 
         EXTRA_FILM_TITLE = intent.getStringExtra("TITULO_PELICULA").toString();
 
-        binding.textView1.text = EXTRA_FILM_TITLE
+        binding.textViewTitle.text = EXTRA_FILM_TITLE
 
-        binding.button1.setOnClickListener{ // Ver
-            val dataIntent = Intent(this@FilmDataActivity, FilmDataActivity::class.java)
-            dataIntent.putExtra("TITULO_PELICULA", "Pelicula relacionada")
-            startActivity(dataIntent)
+        binding.buttonImdb.setOnClickListener{ // Ver en IMDB
+            // val dataIntent = Intent(this@FilmDataActivity, FilmDataActivity::class.java)
+            // dataIntent.putExtra("TITULO_PELICULA", "Pelicula relacionada")
+            val viewIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse("https://www.imdb.com/title/tt0088763/"))
+            if(viewIntent.resolveActivity(packageManager) != null) {
+                startActivity(viewIntent)
+            }
         }
 
-        binding.button2.setOnClickListener{ // Editar
+        binding.buttonEdit.setOnClickListener{ // Editar
             val editIntent = Intent(this@FilmDataActivity, FilmEditActivity::class.java)
             if(Build.VERSION.SDK_INT >= 30) {
                 startForResult.launch(editIntent)
@@ -52,10 +57,11 @@ class FilmDataActivity : AppCompatActivity() {
             }
         }
 
-        binding.button3.setOnClickListener{ // Volver
-            val returnIntent = Intent(this@FilmDataActivity, FilmListActivity::class.java)
+        binding.buttonReturnMainMenu.setOnClickListener{ // Volver al menú
+            /*val returnIntent = Intent(this@FilmDataActivity, FilmListActivity::class.java)
             returnIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-            startActivity(returnIntent) // NavUtils.navigateUpTo(actividad_actual, intentObjetivo)
+            startActivity(returnIntent) // NavUtils.navigateUpTo(actividad_actual, intentObjetivo)*/
+            onBackPressed() // Mejor opción (evita el "reseteo" de pantalla)
         }
     }
 
@@ -66,9 +72,9 @@ class FilmDataActivity : AppCompatActivity() {
         when (requestCode) {
             MOVIE_RESULT ->
                 if (resultCode == Activity.RESULT_OK) {
-                    binding.textView2.text = "Se ha modificado"
+                    binding.textViewSaveState.text = getString(R.string.SAVED_STATE_SUCCESS)
                 } else if (resultCode == Activity.RESULT_CANCELED) {
-                    binding.textView2.text = "NO se ha modificado"
+                    binding.textViewSaveState.text = getString(R.string.SAVED_STATE_CANCEL)
                 }
         }
 

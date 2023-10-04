@@ -4,38 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutActivity"
-    android:background="@color/black">
+    tools:context=".AboutActivity">
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonReturnMainMenu"
         android:layout_width="168dp"
         android:layout_height="42dp"
         android:layout_marginTop="516dp"
         android:fontFamily="sans-serif"
         android:text="@string/VOLVER"
-        android:textColorHighlight="#E67575"
-        android:textColorLink="#FA9A9A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#7E1919" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonSupport"
         android:layout_width="168dp"
         android:layout_height="42dp"
         android:layout_marginTop="464dp"
         android:fontFamily="sans-serif"
         android:text="@string/SOPORTE"
-        android:textColorHighlight="#E67575"
-        android:textColorLink="#FA9A9A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#7E1919" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -44,7 +37,6 @@
         android:layout_marginTop="140dp"
         android:text="@string/PATRICK"
         android:textAlignment="center"
-        android:textColor="#DADADA"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,18 +56,15 @@
         app:layout_constraintVertical_bias="0.139" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonWeb"
         android:layout_width="168dp"
         android:layout_height="42dp"
         android:layout_marginTop="412dp"
         android:fontFamily="sans-serif"
         android:onClick="irWeb"
         android:text="@string/IR_WEB"
-        android:textColorHighlight="#E67575"
-        android:textColorLink="#FA9A9A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#7E1919" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

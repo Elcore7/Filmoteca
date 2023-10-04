@@ -7,4 +7,20 @@
     <string name='NO_FUNC_ERROR'>Not implemented yet</string>
     <string name='VER_PELICULA'>Watch film %1$s</string>
     <string name='ACERCA_DE'>About us</string>
+    <string name='SELECCIONA_OPCION'>Choose an option</string>
+    <string name='DIRECTOR'>Director</string>
+    <string name='ANYO'>Year</string>
+    <string name='VER_IMDB'>Watch on IMDB</string>
+    <string name='EDIT_PELICULA'>Edit film</string>
+    <string name='VOLVER_PRINCIPAL'>Back to main menu</string>
+    <string name='SAVED_STATE_SUCCESS'>Changes saved!</string>
+    <string name='SAVED_STATE_CANCEL'>Changes were cancelled</string>
+    <string name='CAPTURA_FOTOGRAFÍA'>Take a photo</string>
+    <string name='SELECCIONA_IMAGEN'>Take from gallery</string>
+    <string name='TITULO_PELICULA'>Film title</string>
+    <string name='NOMBRE_DIRECTOR'>Director\'s name</string>
+    <string name='ENLACE_A_IMDB'>IMDB\'s link</string>
+    <string name='COMENTARIOS'>Comments</string>
+    <string name='GUARDAR'>Save</string>
+    <string name='CANCELAR'>Cancel</string>
 </resources>

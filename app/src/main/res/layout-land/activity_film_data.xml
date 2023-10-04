@@ -29,113 +29,113 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="38dp"
-        android:text="@string/VER_IMDB" />
+        android:text="Ver en IMDB" />
 
     <Button
         android:id="@+id/buttonReturnMainMenu"
-        android:layout_width="185dp"
-        android:layout_height="50dp"
-        android:layout_alignTop="@+id/buttonEdit"
+        android:layout_width="219dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/buttonEdit"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="24dp"
-        android:layout_toEndOf="@+id/buttonEdit"
-        android:text="@string/VOLVER_PRINCIPAL"/>
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginEnd="115dp"
+        android:layout_toEndOf="@+id/imageViewFilm"
+        android:text="Volver a la principal" />
 
     <Button
         android:id="@+id/buttonEdit"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
-        android:layout_below="@+id/buttonImdb"
+        android:layout_width="174dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewFormat"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="43dp"
-        android:text="@string/EDIT_PELICULA"/>
+        android:layout_marginStart="534dp"
+        android:layout_marginTop="20dp"
+        android:text="Editar película" />
 
     <TextView
         android:id="@+id/textViewSaveState"
-        android:layout_width="wrap_content"
-        android:layout_height="281dp"
+        android:layout_width="328dp"
+        android:layout_height="45dp"
         android:layout_below="@+id/buttonEdit"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="68dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="57dp"
+        android:layout_alignStart="@+id/buttonEdit"
+        android:layout_alignEnd="@+id/buttonEdit"
+        android:layout_marginStart="-77dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="-77dp"
         android:textAlignment="center"
         android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imageViewFilm"
-        android:layout_width="212dp"
-        android:layout_height="195dp"
+        android:layout_width="335dp"
+        android:layout_height="236dp"
         android:layout_below="@+id/textViewTitle"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="34dp"
-        android:layout_marginTop="11dp"
-        android:src="@drawable/back_to_the_future"/>
+        android:layout_marginStart="51dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/back_to_the_future" />
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="136dp"
+        android:layout_width="150dp"
         android:layout_height="19dp"
         android:layout_alignTop="@+id/imageViewFilm"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
         android:text="@string/DIRECTOR"
         android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="136dp"
-        android:layout_height="19dp"
-        android:layout_below="@+id/textViewDirector"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="1dp"
-        android:layout_toEndOf="@+id/imageViewFilm"
-        android:text="@string/ANYO"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/textView3"
+        android:text="Año:"
         android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textViewGenre"
-        android:layout_width="136dp"
+        android:layout_width="150dp"
         android:layout_height="19dp"
         android:layout_below="@+id/textViewYear"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="17dp"
-        android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
-        android:text="SciFi"
+        android:text="Sci-Fi"
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/textViewComment"
+        android:layout_width="225dp"
+        android:layout_height="38dp"
+        android:layout_below="@+id/textViewYear"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="18dp"
+        android:layout_toEndOf="@+id/textViewGenre"
+        android:text="Comentarios"
+        android:textStyle="italic" />
+
+    <TextView
         android:id="@+id/textViewFormat"
-        android:layout_width="136dp"
+        android:layout_width="150dp"
         android:layout_height="19dp"
         android:layout_below="@+id/textViewGenre"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
         android:text="BluRay"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewDirector"
-        android:layout_width="136dp"
+        android:layout_width="150dp"
         android:layout_height="19dp"
         android:layout_below="@+id/textView3"
-        android:layout_alignParentEnd="true"
         android:layout_marginStart="27dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
@@ -144,14 +144,12 @@
 
     <TextView
         android:id="@+id/textViewYear"
-        android:layout_width="136dp"
-        android:layout_height="19dp"
+        android:layout_width="150dp"
+        android:layout_height="21dp"
         android:layout_below="@+id/textView6"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_toEndOf="@+id/imageViewFilm"
+        android:layout_toEndOf="@+id/textViewDirector"
         android:text="1985" />
 
 </RelativeLayout>

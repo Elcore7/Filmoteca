@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".FilmEditActivity">
-
+    <!--Experimentando con sustitución de layout en vez de modificarlo-->
+    <!-- NO SE USA ESTE LAYOUT YA PARA EL FORM EDIT, SE USA "activity_film_form_edit.xml" -->
+    <!--
     <Button
         android:id="@+id/button2"
         android:layout_width="152dp"
@@ -36,9 +37,9 @@
         android:layout_marginTop="156dp"
         android:text="Editando película"
         android:textAlignment="center"
-        android:textColor="@color/white"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+        -->
 </androidx.constraintlayout.widget.ConstraintLayout>

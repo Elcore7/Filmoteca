@@ -17,7 +17,7 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.button1.setOnClickListener{
+        binding.buttonWeb.setOnClickListener{
             //Toast.makeText(this, resources.getString(R.string.NO_FUNC_ERROR), Toast.LENGTH_LONG).show()
             val viewIntent = Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://es.wikipedia.org/wiki/Patricio_Estrella"))
@@ -26,7 +26,7 @@ class AboutActivity : AppCompatActivity() {
             }
         }
 
-        binding.button2.setOnClickListener{
+        binding.buttonSupport.setOnClickListener{
             //Toast.makeText(this, resources.getString(R.string.NO_FUNC_ERROR), Toast.LENGTH_LONG).show()
             val viewIntent = Intent(Intent.ACTION_SENDTO,
                 Uri.parse("mailto:vck1@gcloud.ua.es"))
@@ -35,7 +35,7 @@ class AboutActivity : AppCompatActivity() {
             }
         }
 
-        binding.button3.setOnClickListener{
+        binding.buttonReturnMainMenu.setOnClickListener{
             //Toast.makeText(this, resources.getString(R.string.NO_FUNC_ERROR), Toast.LENGTH_LONG).show()
             finish()
         }

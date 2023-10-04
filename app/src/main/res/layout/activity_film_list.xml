@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
     tools:context=".FilmListActivity">
 
     <Button
@@ -38,14 +37,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textViewSaveState"
         android:layout_width="278dp"
         android:layout_height="59dp"
         android:layout_marginTop="32dp"
         android:fontFamily="casual"
         android:text="La filmoteca"
         android:textAlignment="center"
-        android:textColor="#DADADA"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

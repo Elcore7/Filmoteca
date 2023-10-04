@@ -7,4 +7,20 @@
     <string name='NO_FUNC_ERROR'>Funcionalidad sin implementar</string>
     <string name='VER_PELICULA'>Ver película %1$s</string>
     <string name='ACERCA_DE'>Acerca de</string>
+    <string name='SELECCIONA_OPCION'>Selecciona una opción</string>
+    <string name='DIRECTOR'>Director</string>
+    <string name='ANYO'>Año</string>
+    <string name='VER_IMDB'>Ver en IMDB</string>
+    <string name='EDIT_PELICULA'>Editar película</string>
+    <string name='VOLVER_PRINCIPAL'>Volver al principal</string>
+    <string name='SAVED_STATE_SUCCESS'>Se han guardado los cambios</string>
+    <string name='SAVED_STATE_CANCEL'>No se han guardado los cambios</string>
+    <string name='CAPTURA_FOTOGRAFÍA'>Captura fotografía</string>
+    <string name='SELECCIONA_IMAGEN'>Selecciona imagen</string>
+    <string name='TITULO_PELICULA'>Título de la película</string>
+    <string name='NOMBRE_DIRECTOR'>Nombre del director</string>
+    <string name='ENLACE_A_IMDB'>Enlace a IMDB</string>
+    <string name='COMENTARIOS'>Comentarios</string>
+    <string name='GUARDAR'>Guardar</string>
+    <string name='CANCELAR'>Cancelar</string>
 </resources>
