@@ -16,11 +16,13 @@
     <string name='SAVED_STATE_SUCCESS'>Se han guardado los cambios</string>
     <string name='SAVED_STATE_CANCEL'>No se han guardado los cambios</string>
     <string name='CAPTURA_FOTOGRAFÍA'>Captura fotografía</string>
-    <string name='SELECCIONA_IMAGEN'>Selecciona imagen</string>
+    <string name='SELECCIONA_IMAGEN'>Selecciona una imagen</string>
     <string name='TITULO_PELICULA'>Título de la película</string>
     <string name='NOMBRE_DIRECTOR'>Nombre del director</string>
     <string name='ENLACE_A_IMDB'>Enlace a IMDB</string>
     <string name='COMENTARIOS'>Comentarios</string>
     <string name='GUARDAR'>Guardar</string>
     <string name='CANCELAR'>Cancelar</string>
+    <string name='NO_COMPATIBLE'>No es compatible con tu dispositivo</string>
+    <string name='SELECCIONE_IMAGEN'>Seleccione una imagen</string>
 </resources>

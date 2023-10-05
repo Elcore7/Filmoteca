@@ -28,7 +28,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/CAPTURA_FOTOGRAFÍA"
-                android:layout_margin="10dp"/>
+                android:layout_marginTop="10dp"/>
 
             <Button
                 android:id="@+id/buttonGallery"
@@ -36,7 +36,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/SELECCIONA_IMAGEN"
-                android:layout_margin="10dp" />
+                android:layout_marginTop="10dp" />
         </LinearLayout>
 
         <EditText

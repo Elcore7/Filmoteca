@@ -23,4 +23,6 @@
     <string name='COMENTARIOS'>Comments</string>
     <string name='GUARDAR'>Save</string>
     <string name='CANCELAR'>Cancel</string>
+    <string name='NO_COMPATIBLE'>Not compatible with your device</string>
+    <string name='SELECCIONE_IMAGEN'>Select an image</string>
 </resources>

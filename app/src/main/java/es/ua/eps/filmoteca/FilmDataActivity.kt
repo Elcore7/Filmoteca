@@ -18,13 +18,17 @@ class FilmDataActivity : AppCompatActivity() {
 
     companion object Extras {
         var EXTRA_FILM_TITLE = "";
-        var MOVIE_RESULT = 0;
+        var MOVIE_RESULT = 1;
     }
 
     private val startForResult =
         registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            onActivityResult(MOVIE_RESULT, result.resultCode, result.data)
+            ActivityResultContracts.StartActivityForResult()) { /*result: ActivityResult ->
+            onActivityResult(MOVIE_RESULT, result.resultCode, result.data)*/
+            // Ya por defecto, "ActivityResultContracts.StartActivityForResult()" realiza la llamada "onActivityResult"
+            // Se ha comentado puesto que está duplicando la llamada, aquí se podrían realizar
+            // los cambios de "onActivityResult" si no se controla las API < 30
+
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
