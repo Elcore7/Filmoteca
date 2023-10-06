@@ -19,25 +19,25 @@ object FilmDataSource {
         films.add(f)
 
         f = Film()
-        f.title = "Los Robinson"
-        f.director = "No lo sé, no lo he mirado"
+        f.title = "Conoce a los Robinson"
+        f.director = "Stephen J. Anderson"
         f.imageResId = R.drawable.back_to_the_future
-        f.comments = "Esta memorable la verdad"
+        f.comments = "Funi :v"
         f.format = Film.Companion.FORMAT_BLURAY
         f.genre = Film.Companion.GENRE_COMEDY
-        f.imdbUrl = "http://www.imdb.com/title/tt0088763"
-        f.year = 2008 // creo
+        f.imdbUrl = "https://www.imdb.com/title/tt0396555/"
+        f.year = 2007
         films.add(f)
 
         f = Film()
         f.title = "Spiderman 2"
-        f.director = "Un grande, no lo conozco"
+        f.director = "Sam Raimi"
         f.imageResId = R.drawable.back_to_the_future
         f.comments = "Fresquísima mi pana"
         f.format = Film.Companion.FORMAT_DVD
         f.genre = Film.Companion.GENRE_ACTION
-        f.imdbUrl = "http://www.imdb.com/title/tt0088763"
-        f.year = 2002 // creo
+        f.imdbUrl = "https://www.imdb.com/title/tt0316654/"
+        f.year = 2004
         films.add(f)
 
     }

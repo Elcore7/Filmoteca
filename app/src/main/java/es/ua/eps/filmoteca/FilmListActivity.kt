@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import es.ua.eps.filmoteca.adapters.LenguajesArrayAdapter
 import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
 import es.ua.eps.filmoteca.sources.FilmDataSource
@@ -20,8 +21,8 @@ class FilmListActivity : AppCompatActivity() {
 
         val verPelicula = R.string.VER_PELICULA
 
-        val adaptador = ArrayAdapter(
-            this, android.R.layout.simple_list_item_1, FilmDataSource.films
+        val adaptador = LenguajesArrayAdapter(
+            this, R.layout.activity_film_list_item /*android.R.layout.simple_list_item_1*/, FilmDataSource.films
         )
 
         binding.movieList.adapter = adaptador
