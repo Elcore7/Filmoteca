@@ -1,10 +1,13 @@
 package es.ua.eps.filmoteca
 
+import android.app.ListActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import es.ua.eps.filmoteca.databinding.ActivityAboutBinding
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
+import es.ua.eps.filmoteca.sources.FilmDataSource
 
 class FilmListActivity : AppCompatActivity() {
 
@@ -17,7 +20,13 @@ class FilmListActivity : AppCompatActivity() {
 
         val verPelicula = R.string.VER_PELICULA
 
-        binding.button1.text = getString(verPelicula, " A")
+        val adaptador = ArrayAdapter(
+            this, android.R.layout.simple_list_item_1, FilmDataSource.films
+        )
+
+        binding.movieList.adapter = adaptador
+
+        /*binding.button1.text = getString(verPelicula, " A")
         binding.button1.setOnClickListener{
             val dataIntent = Intent(this@FilmListActivity, FilmDataActivity::class.java)
             dataIntent.putExtra("TITULO_PELICULA", "Película A")
@@ -29,7 +38,7 @@ class FilmListActivity : AppCompatActivity() {
             val dataIntent = Intent(this@FilmListActivity, FilmDataActivity::class.java)
             dataIntent.putExtra("TITULO_PELICULA", "Película B")
             startActivity(dataIntent)
-        }
+        }*/
 
         binding.button3.text = getString(R.string.ACERCA_DE);
         binding.button3.setOnClickListener{
