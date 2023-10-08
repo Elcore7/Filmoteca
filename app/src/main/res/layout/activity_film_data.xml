@@ -33,30 +33,30 @@
 
     <Button
         android:id="@+id/buttonReturnMainMenu"
-        android:layout_width="185dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/buttonEdit"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="23dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="10dp"
         android:layout_toEndOf="@+id/buttonEdit"
-        android:text="@string/VOLVER_PRINCIPAL"/>
+        android:text="@string/VOLVER_PRINCIPAL" />
 
     <Button
         android:id="@+id/buttonEdit"
-        android:layout_width="152dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/buttonImdb"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="43dp"
         android:text="@string/EDIT_PELICULA"/>
 
     <TextView
         android:id="@+id/textViewSaveState"
         android:layout_width="wrap_content"
-        android:layout_height="281dp"
+        android:layout_height="134dp"
         android:layout_below="@+id/buttonEdit"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -64,7 +64,7 @@
         android:layout_marginStart="84dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="84dp"
-        android:layout_marginBottom="57dp"
+        android:layout_marginBottom="204dp"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -74,9 +74,9 @@
         android:layout_height="195dp"
         android:layout_below="@+id/textViewTitle"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="34dp"
+        android:layout_marginStart="12dp"
         android:layout_marginTop="11dp"
-        android:src="@drawable/back_to_the_future"/>
+        android:src="@drawable/back_to_the_future" />
 
     <TextView
         android:id="@+id/textView3"
@@ -84,7 +84,7 @@
         android:layout_height="19dp"
         android:layout_alignTop="@+id/imageViewFilm"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
@@ -97,7 +97,7 @@
         android:layout_height="19dp"
         android:layout_below="@+id/textViewDirector"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="1dp"
         android:layout_toEndOf="@+id/imageViewFilm"
@@ -110,7 +110,7 @@
         android:layout_height="19dp"
         android:layout_below="@+id/textViewYear"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="17dp"
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
@@ -123,7 +123,7 @@
         android:layout_height="19dp"
         android:layout_below="@+id/textViewGenre"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"
@@ -131,14 +131,27 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/textViewComment"
+        android:layout_width="138dp"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewFormat"
+        android:layout_alignStart="@+id/textViewFormat"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="0dp"
+        android:text="Comentario"
+        android:textStyle="" />
+
+    <TextView
         android:id="@+id/textViewDirector"
-        android:layout_width="136dp"
-        android:layout_height="19dp"
+        android:layout_width="175dp"
+        android:layout_height="39dp"
         android:layout_below="@+id/textView3"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginEnd="2dp"
         android:layout_toEndOf="@+id/imageViewFilm"
         android:text="Robert Zemeckis" />
 
@@ -148,7 +161,7 @@
         android:layout_height="19dp"
         android:layout_below="@+id/textView6"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="27dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="0dp"
         android:layout_toEndOf="@+id/imageViewFilm"

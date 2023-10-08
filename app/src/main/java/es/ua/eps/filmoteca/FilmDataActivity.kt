@@ -9,8 +9,10 @@ import android.os.Bundle
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NavUtils
+import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmDataBinding
 import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
+import es.ua.eps.filmoteca.sources.FilmDataSource
 
 class FilmDataActivity : AppCompatActivity() {
 
@@ -18,29 +20,30 @@ class FilmDataActivity : AppCompatActivity() {
 
     companion object Extras {
         var EXTRA_FILM_TITLE = "";
+        var FILM_DATA = Film();
         var MOVIE_RESULT = 1;
     }
 
-    private val startForResult =
-        registerForActivityResult(
-            ActivityResultContracts.StartActivityForResult()) { /*result: ActivityResult ->
-            onActivityResult(MOVIE_RESULT, result.resultCode, result.data)*/
-            // Ya por defecto, "ActivityResultContracts.StartActivityForResult()" realiza la llamada "onActivityResult"
-            // Se ha comentado puesto que está duplicando la llamada, aquí se podrían realizar
-            // los cambios de "onActivityResult" si no se controla las API < 30
+    private var filmIndex: Int = -1
 
-        }
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        onActivityResult(MOVIE_RESULT, result.resultCode, result.data)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFilmDataBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        EXTRA_FILM_TITLE = intent.getStringExtra("TITULO_PELICULA").toString();
+        filmIndex = intent.getIntExtra("FILM_INDEX", -1)
 
-        binding.textViewTitle.text = EXTRA_FILM_TITLE
+        setFilmData(filmIndex)
 
-        binding.buttonImdb.setOnClickListener{ // Ver en IMDB
+        /*EXTRA_FILM_TITLE = intent.getStringExtra("TITULO_PELICULA").toString();
+
+        binding.textViewTitle.text = EXTRA_FILM_TITLE*/
+
+        /*binding.buttonImdb.setOnClickListener{ // Ver en IMDB
             // val dataIntent = Intent(this@FilmDataActivity, FilmDataActivity::class.java)
             // dataIntent.putExtra("TITULO_PELICULA", "Pelicula relacionada")
             val viewIntent = Intent(Intent.ACTION_VIEW,
@@ -48,10 +51,11 @@ class FilmDataActivity : AppCompatActivity() {
             if(viewIntent.resolveActivity(packageManager) != null) {
                 startActivity(viewIntent)
             }
-        }
+        }*/
 
         binding.buttonEdit.setOnClickListener{ // Editar
             val editIntent = Intent(this@FilmDataActivity, FilmEditActivity::class.java)
+            editIntent.putExtra("FILM_INDEX", filmIndex)
             if(Build.VERSION.SDK_INT >= 30) {
                 startForResult.launch(editIntent)
             }
@@ -69,17 +73,50 @@ class FilmDataActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    private fun setFilmData(filmIndex: Int) {
+        if (filmIndex == -1)
+            return
+        // Si no da caso error, se cargan los datos
+        FILM_DATA = FilmDataSource.films[filmIndex]
 
-        super.onActivityResult(requestCode, resultCode, data)
+        binding.textViewTitle.text = FILM_DATA.title
+        binding.textViewDirector.text = FILM_DATA.director
+        binding.textViewYear.text = FILM_DATA.year.toString()
+
+        // Enumeraciones:
+        var enumFormato = resources.getStringArray(R.array.FORMATO)
+        var enumGenre = resources.getStringArray(R.array.GENERO)
+        binding.textViewGenre.text = enumGenre.get(FILM_DATA.genre)
+        binding.textViewFormat.text = enumFormato.get(FILM_DATA.format)
+
+        binding.buttonImdb.setOnClickListener {
+            val viewIntent = Intent(Intent.ACTION_VIEW,
+                Uri.parse(FILM_DATA.imdbUrl))
+            if(viewIntent.resolveActivity(packageManager) != null) {
+                startActivity(viewIntent)
+            }
+        }
+        if (FILM_DATA.imageResId != null) {
+            binding.imageViewFilm.setImageResource(FILM_DATA.imageResId)
+        } else {
+            binding.imageViewFilm.setImageResource(R.drawable.default_film_image)
+        }
+
+        binding.textViewComment.text = FILM_DATA.comments
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         when (requestCode) {
             MOVIE_RESULT ->
                 if (resultCode == Activity.RESULT_OK) {
                     binding.textViewSaveState.text = getString(R.string.SAVED_STATE_SUCCESS)
+                    setFilmData(filmIndex)
                 } else if (resultCode == Activity.RESULT_CANCELED) {
                     binding.textViewSaveState.text = getString(R.string.SAVED_STATE_CANCEL)
                 }
+            else ->
+                super.onActivityResult(requestCode, resultCode, data)
         }
 
     }

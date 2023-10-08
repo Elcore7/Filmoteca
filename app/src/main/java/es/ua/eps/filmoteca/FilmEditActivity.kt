@@ -3,20 +3,22 @@ package es.ua.eps.filmoteca
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmFormEditBinding
+import es.ua.eps.filmoteca.sources.FilmDataSource
 
 
 class FilmEditActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFilmFormEditBinding /*ActivityFilmEditBinding*/
+
+    var filmIndex = -1
 
     private var imageCamera = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             result ->
@@ -40,12 +42,19 @@ class FilmEditActivity : AppCompatActivity() {
         binding = ActivityFilmFormEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        filmIndex = intent.getIntExtra("FILM_INDEX", -1)
+
+        setFilmData(filmIndex)
+
         setButtons()
     }
 
     private fun setButtons() {
         binding.buttonSave.setOnClickListener { // Guardar
             setResult(Activity.RESULT_OK)
+            if (filmIndex != -1) {
+                saveFilm(filmIndex)
+            }
             finish()
         }
 
@@ -99,6 +108,37 @@ class FilmEditActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveFilm(filmIndex: Int) {
+        FilmDataSource.films[filmIndex].title = binding.editTextTitle.text.toString()
+        FilmDataSource.films[filmIndex].director = binding.editTextDirectorName.text.toString()
+        FilmDataSource.films[filmIndex].year = binding.editTextYear.text.toString().toInt()
+        FilmDataSource.films[filmIndex].imdbUrl = binding.editTextImdb.text.toString()
+        FilmDataSource.films[filmIndex].comments = binding.editTextComment.text.toString()
+        FilmDataSource.films[filmIndex].format = binding.spinnerFormat.selectedItemPosition
+        FilmDataSource.films[filmIndex].genre = binding.spinnerGenre.selectedItemPosition
+        // FilmDataSource.films[filmIndex].imageResId =
+    }
+
+    private fun setFilmData(filmIndex: Int) {
+        if (filmIndex == -1)
+            return
+        // Si no da caso error, se cargan los datos
+        var filmContent: Film = FilmDataSource.films[filmIndex]
+
+        binding.editTextTitle.setText(filmContent.title)
+        binding.editTextDirectorName.setText(filmContent.director)
+        binding.editTextYear.setText(filmContent.year.toString())
+
+        // Enumeraciones:
+        binding.spinnerGenre.setSelection(filmContent.genre)
+        binding.spinnerFormat.setSelection(filmContent.format)
+
+        binding.editTextImdb.setText(filmContent.imdbUrl)
+        binding.editTextComment.setText(filmContent.comments)
+
+        binding.imageMovie.setImageResource(filmContent.imageResId)
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         // Si se llama el super al comienzo, este llamará al de "imageCamera" y este volverá aquí realizando 2 llamadas
@@ -107,7 +147,9 @@ class FilmEditActivity : AppCompatActivity() {
         when (requestCode) {
             GALLERY_IMAGE_CODE ->
                 if (resultCode == RESULT_OK && data != null && data.data != null) {
-                    binding.imageMovie.setImageURI(data.data)
+                    // binding.imageMovie.setImageURI(data.data)
+                    val bitmapImage = MediaStore.Images.Media.getBitmap(this.contentResolver, data.data)
+                    binding.imageMovie.setImageBitmap(bitmapImage)
                 }
             CAMERA_IMAGE_CODE ->
                 if (resultCode == RESULT_OK && data != null) {

@@ -2,10 +2,10 @@
 <resources>
     <string-array name="GENERO">
         <item>Acción</item>
-        <item>Drama</item>
         <item>Comedia</item>
-        <item>Terror</item>
+        <item>Drama</item>
         <item>Sci-Fi</item>
+        <item>Terror</item>
     </string-array>
     <string-array name="FORMATO">
         <item>DVD</item>

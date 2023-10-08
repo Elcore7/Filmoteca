@@ -10,7 +10,7 @@ object FilmDataSource {
         var f = Film()
         f.title = "Regreso al futuro"
         f.director = "Robert Zemeckis"
-        f.imageResId = R.drawable.back_to_the_future
+        f.imageResId = R.drawable.film0
         f.comments = "Comentario interesante"
         f.format = Film.Companion.FORMAT_DIGITAL
         f.genre = Film.Companion.GENRE_SCIFI
@@ -21,7 +21,7 @@ object FilmDataSource {
         f = Film()
         f.title = "Conoce a los Robinson"
         f.director = "Stephen J. Anderson"
-        f.imageResId = R.drawable.back_to_the_future
+        f.imageResId = R.drawable.film1
         f.comments = "Funi :v"
         f.format = Film.Companion.FORMAT_BLURAY
         f.genre = Film.Companion.GENRE_COMEDY
@@ -32,7 +32,7 @@ object FilmDataSource {
         f = Film()
         f.title = "Spiderman 2"
         f.director = "Sam Raimi"
-        f.imageResId = R.drawable.back_to_the_future
+        f.imageResId = R.drawable.film2
         f.comments = "Fresquísima mi pana"
         f.format = Film.Companion.FORMAT_DVD
         f.genre = Film.Companion.GENRE_ACTION

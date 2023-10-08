@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/movieList"
+        app:layout_constraintTop_toBottomOf="@+id/list"
         app:layout_constraintVertical_bias="0.437" />
 
     <TextView
@@ -34,13 +34,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/movieList"
+        android:id="@+id/list"
         android:layout_width="314dp"
         android:layout_height="457dp"
         android:layout_marginTop="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSaveState" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewSaveState"
+        app:layout_constraintVertical_bias="0.005" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
