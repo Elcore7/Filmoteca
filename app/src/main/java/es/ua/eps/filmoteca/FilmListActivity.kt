@@ -1,11 +1,11 @@
 package es.ua.eps.filmoteca
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import es.ua.eps.filmoteca.adapters.LenguajesArrayAdapter
+import es.ua.eps.filmoteca.adapters.FilmListAdapter
 import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
 import es.ua.eps.filmoteca.sources.FilmDataSource
@@ -18,9 +18,8 @@ class FilmListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFilmListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        loadImagesToObjects()
         /*val verPelicula = R.string.VER_PELICULA*/
-
         setList()
 
         binding.button3.text = getString(R.string.ACERCA_DE);
@@ -30,8 +29,14 @@ class FilmListActivity : AppCompatActivity() {
         }
     }
 
+    private fun loadImagesToObjects() {
+        for (filmAux: Film in FilmDataSource.films) {
+            filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
+        }
+    }
+
     private fun setList() {
-        val adaptador = LenguajesArrayAdapter(
+        val adaptador = FilmListAdapter(
             this, R.layout.activity_film_list_item /*android.R.layout.simple_list_item_1*/, FilmDataSource.films
         )
 

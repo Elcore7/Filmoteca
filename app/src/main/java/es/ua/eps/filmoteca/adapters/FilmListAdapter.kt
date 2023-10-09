@@ -10,7 +10,7 @@ import android.widget.TextView
 import es.ua.eps.filmoteca.R
 import es.ua.eps.filmoteca.classes.Film
 
-class LenguajesArrayAdapter(context: Context?, resource: Int, objects: List<Film>?) : ArrayAdapter<Film>(context!!, resource, objects!!) {
+class FilmListAdapter(context: Context?, resource: Int, objects: List<Film>?) : ArrayAdapter<Film>(context!!, resource, objects!!) {
 
     override fun getView(position: Int, convertView: View?,
                          parent: ViewGroup): View {
@@ -25,7 +25,8 @@ class LenguajesArrayAdapter(context: Context?, resource: Int, objects: List<Film
         getItem(position)?.let {
             titulo.text = it.title
             director.text = it.director
-            icono.setImageResource(it.imageResId)
+            // icono.setImageResource(it.imageResId)
+            icono.setImageBitmap(it.bitmapImage)
         }
 
         return view

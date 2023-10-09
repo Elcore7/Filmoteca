@@ -1,7 +1,10 @@
 package es.ua.eps.filmoteca.classes
 
+import android.graphics.Bitmap
+
 class Film {
     var imageResId = 0 // Propiedades de la clase
+    var bitmapImage: Bitmap? = null // Donde se guarda la imagen
     var title: String? = null
     var director: String? = null
     var year = 0

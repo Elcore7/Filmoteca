@@ -2,6 +2,7 @@ package es.ua.eps.filmoteca
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -96,11 +97,16 @@ class FilmDataActivity : AppCompatActivity() {
                 startActivity(viewIntent)
             }
         }
-        if (FILM_DATA.imageResId != null) {
+        if (FILM_DATA.bitmapImage != null) {
+            binding.imageViewFilm.setImageBitmap(FILM_DATA.bitmapImage)
+        } else {
+            binding.imageViewFilm.setImageBitmap(BitmapFactory.decodeResource(resources,R.drawable.default_film_image))
+        }
+        /*if (FILM_DATA.imageResId != null) {
             binding.imageViewFilm.setImageResource(FILM_DATA.imageResId)
         } else {
             binding.imageViewFilm.setImageResource(R.drawable.default_film_image)
-        }
+        }*/
 
         binding.textViewComment.text = FILM_DATA.comments
     }
