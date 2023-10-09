@@ -27,6 +27,11 @@ class FilmListActivity : AppCompatActivity() {
             val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
             startActivity(aboutIntent)
         }
+
+        binding.alternativeList.setOnClickListener {
+            val recyclerIntent = Intent(this@FilmListActivity, FilmListRecyclerActivity::class.java)
+            startActivity(recyclerIntent)
+        }
     }
 
     private fun loadImagesToObjects() {

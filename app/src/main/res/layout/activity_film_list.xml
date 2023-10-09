@@ -13,10 +13,23 @@
         android:layout_marginBottom="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.815"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/list"
-        app:layout_constraintVertical_bias="0.437" />
+        app:layout_constraintVertical_bias="0.151" />
+
+    <Button
+        android:id="@+id/alternativeList"
+        android:layout_width="146dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="68dp"
+        android:text="RecyclerView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textViewSaveState"
@@ -35,8 +48,8 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="314dp"
-        android:layout_height="457dp"
+        android:layout_width="312dp"
+        android:layout_height="332dp"
         android:layout_marginTop="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
