@@ -206,7 +206,7 @@ class FilmEditActivity : AppCompatActivity() {
         binding.editTextImdb.setText(filmContent.imdbUrl)
         binding.editTextComment.setText(filmContent.comments)
 
-        binding.imageMovie.setImageResource(filmContent.imageResId)
+        binding.imageMovie.setImageBitmap(filmContent.bitmapImage)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
