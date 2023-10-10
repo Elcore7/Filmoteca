@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar2"
         android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="42dp"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="43dp"
         android:fontFamily="sans-serif-condensed"
         android:text="Regreso al futuro"
         android:textAlignment="center"
         android:textSize="34sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/buttonImdb"
@@ -26,20 +27,24 @@
         android:layout_below="@+id/imageViewFilm"
         android:layout_alignStart="@+id/imageViewFilm"
         android:layout_alignEnd="@+id/imageViewFilm"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="38dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="38dp"
+        android:layout_marginBottom="25dp"
         android:text="Ver en IMDB" />
 
     <Button
         android:id="@+id/buttonReturnMainMenu"
-        android:layout_width="219dp"
-        android:layout_height="45dp"
-        android:layout_below="@+id/buttonEdit"
+        android:layout_width="266dp"
+        android:layout_height="49dp"
+        android:layout_alignTop="@+id/buttonEdit"
+        android:layout_alignBottom="@+id/buttonEdit"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="123dp"
-        android:layout_marginTop="62dp"
-        android:layout_marginEnd="115dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="222dp"
+        android:layout_marginBottom="-1dp"
         android:layout_toEndOf="@+id/imageViewFilm"
         android:text="Volver a la principal" />
 
@@ -49,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textViewFormat"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="534dp"
+        android:layout_marginStart="636dp"
         android:layout_marginTop="20dp"
         android:text="Editar película" />
 
@@ -60,16 +65,18 @@
         android:layout_below="@+id/buttonEdit"
         android:layout_alignStart="@+id/buttonEdit"
         android:layout_alignEnd="@+id/buttonEdit"
-        android:layout_marginStart="-77dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="-77dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-202dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="26dp"
         android:textAlignment="center"
         android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/imageViewFilm"
-        android:layout_width="335dp"
-        android:layout_height="236dp"
+        android:layout_width="292dp"
+        android:layout_height="182dp"
         android:layout_below="@+id/textViewTitle"
         android:layout_alignParentStart="true"
         android:layout_marginStart="51dp"
@@ -151,5 +158,20 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/textViewDirector"
         android:text="1985" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        app:title="La Filmoteca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
 </RelativeLayout>

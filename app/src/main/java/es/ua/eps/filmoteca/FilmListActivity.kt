@@ -4,7 +4,10 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import android.widget.AdapterView.OnItemClickListener
+import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
 import es.ua.eps.filmoteca.classes.Film
@@ -20,9 +23,6 @@ class FilmListActivity : AppCompatActivity() {
         binding = ActivityFilmListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         loadImagesToObjects()
-
-        val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
-        setSupportActionBar(toolbar)
 
         setToolbar()
         setList()
@@ -41,7 +41,9 @@ class FilmListActivity : AppCompatActivity() {
 
     private fun setToolbar() {
         val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
+        // val toolbar: Toolbar = binding.toolbar as Toolbar
         setSupportActionBar(toolbar)
+        // toolbar.setNavigationIcon(com.google.android.material.R.drawable.ic_arrow_back_black_24)
 
         /*//Opt. común
         val groupId = Menu.NONE // Identificador de grupo (Grupo de menú)
@@ -58,20 +60,6 @@ class FilmListActivity : AppCompatActivity() {
 
         toolbar.menu.add(groupId, itemId, itemOrder, itemText)
         toolbar.menu.add(groupId, itemId2, itemOrder2, itemText2)*/
-
-        toolbar.setOnMenuItemClickListener {
-                item ->
-            when (item.itemId) {
-                R.id.item1 ->
-                    addBlankFilm()
-
-                R.id.item2 -> {
-                    val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
-                    startActivity(aboutIntent)
-                }
-            }
-            true
-        }
     }
 
     private fun addBlankFilm() {
@@ -122,7 +110,27 @@ class FilmListActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        menuInflater.inflate(R.menu.menu_toolbar_list, menu)
+        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        // supportActionBar?.setDisplayShowHomeEnabled(true)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item1 -> {
+                addBlankFilm()
+            }
+            R.id.item2 -> {
+                val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
+                startActivity(aboutIntent)
+            }
+            /*android.R.id.home -> {
+                // Toast.makeText(this, resources.getString(R.string.NO_COMPATIBLE), Toast.LENGTH_LONG)
+                val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
+                startActivity(aboutIntent)
+            }*/
+        }
         return true
     }
 }
