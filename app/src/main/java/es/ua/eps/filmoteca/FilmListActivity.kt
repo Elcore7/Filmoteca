@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
-import android.widget.Toolbar
+import android.widget.AdapterView.OnItemLongClickListener
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.view.ActionMode
+import es.ua.eps.filmoteca.action_modes.FilmListActionModeCallback
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
 import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
@@ -17,6 +18,41 @@ import es.ua.eps.filmoteca.sources.FilmDataSource
 class FilmListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFilmListBinding
+
+    private var actionMode: ActionMode? = null
+
+    val actionModeCallback: ActionMode.Callback =
+        object : ActionMode.Callback {
+            // Se llama la primera vez que se crea la barra contextual
+            override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
+                val inflater = mode?.menuInflater
+                inflater?.inflate(R.menu.menu_action_bar, menu)
+                return true
+            }
+
+            // Se llama después de crear la barra y cada vez que se invalida
+            override fun onPrepareActionMode(mode: ActionMode,
+                                             menu: Menu): Boolean {
+                return false
+            }
+
+            // Se invoca cuando pulsamos sobre un item del menú contextual
+            override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
+                when (item?.itemId) {
+                    R.id.action_delete -> {
+                        // TODO: SELECCIONAR
+                        // mode?.finish()
+                        return true
+                    }
+                }
+                return false
+            }
+
+            // Se llama cuando salimos del action mode
+            override fun onDestroyActionMode(mode: ActionMode) {
+                actionMode = null
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,16 +69,17 @@ class FilmListActivity : AppCompatActivity() {
             startActivity(aboutIntent)
         }
 
-        binding.alternativeList.setOnClickListener {
+        //  No hace falta mantener este listado que solo se pedía en un ejercicio anterior de otra práctica
+        /*binding.alternativeList.setOnClickListener {
             val recyclerIntent = Intent(this@FilmListActivity, FilmListRecyclerActivity::class.java)
             startActivity(recyclerIntent)
-        }
+        }*/
     }
 
     private fun setToolbar() {
         val toolbar: androidx.appcompat.widget.Toolbar = binding.toolbar
-        // val toolbar: Toolbar = binding.toolbar as Toolbar
         setSupportActionBar(toolbar)
+        // val toolbar: Toolbar = binding.toolbar as Toolbar
         // toolbar.setNavigationIcon(com.google.android.material.R.drawable.ic_arrow_back_black_24)
 
         /*//Opt. común
@@ -92,6 +129,7 @@ class FilmListActivity : AppCompatActivity() {
         )
 
         binding.list.adapter = adaptador
+        // TODO: ListView.CHOICE_MODE_MULTIPLE
 
         binding.list.onItemClickListener =
             OnItemClickListener { parent, view, position, id ->
@@ -102,6 +140,18 @@ class FilmListActivity : AppCompatActivity() {
                 dataIntent.putExtra("FILM_INDEX", position)
                 startActivity(dataIntent)
             }
+
+        binding.list.onItemLongClickListener =
+            OnItemLongClickListener { parent, view, position, id ->
+                // binding.toolbar.visibility = View.GONE
+                adaptador.toggleSelection(position)
+                val count = (binding.list.adapter as FilmListAdapter).selectedItems.size()
+                if (count > 0) {
+                    //startActionMode(FilmListActionModeCallback(adaptador))
+                    actionMode = this@FilmListActivity.startSupportActionMode(actionModeCallback)
+                }
+                true
+            }
     }
 
     override fun onRestart() { // Para aplicar los cambios al volver a esta "activity" [onResume era otra posibilidad]
@@ -109,10 +159,11 @@ class FilmListActivity : AppCompatActivity() {
         setList()
     }
 
+
+    // Auxiliares menú:
+
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_toolbar_list, menu)
-        // supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        // supportActionBar?.setDisplayShowHomeEnabled(true)
         return true
     }
 
@@ -125,11 +176,6 @@ class FilmListActivity : AppCompatActivity() {
                 val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
                 startActivity(aboutIntent)
             }
-            /*android.R.id.home -> {
-                // Toast.makeText(this, resources.getString(R.string.NO_COMPATIBLE), Toast.LENGTH_LONG)
-                val aboutIntent = Intent(this@FilmListActivity, AboutActivity::class.java)
-                startActivity(aboutIntent)
-            }*/
         }
         return true
     }

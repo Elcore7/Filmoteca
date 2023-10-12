@@ -202,7 +202,7 @@ class FilmEditActivity : AppCompatActivity() {
         when (item.itemId) {
             android.R.id.home -> {
                 val returnIntent = Intent(this@FilmEditActivity, FilmListActivity::class.java)
-                // Si se usan en conjunto estas FLAGS se evita el "reseteo de pantalla"
+                // Si se usan en conjunto estas FLAGS se evita el efecto de "reseteo de pantalla"
                 returnIntent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(returnIntent)
             }
