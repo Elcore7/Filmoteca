@@ -13,6 +13,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -133,61 +135,7 @@ class FilmEditActivity : AppCompatActivity() {
             var bitAux = binding.imageMovie.drawable.toBitmap()
             FilmDataSource.films[filmIndex].bitmapImage = binding.imageMovie.drawable.toBitmap()
         }
-        /*if (binding.imageMovie.drawable != null) {
-            FilmDataSource.films[filmIndex].bitmapImage = binding.imageMovie.drawable as Bitmap
-        }*/
-
-        /*if (binding.imageMovie.drawable.toBitmap() != FilmDataSource.films[filmIndex].bitmapImage) {
-            try {
-                // Save the image to the device's media storage
-                val contentValues = ContentValues().apply {
-                    put(MediaStore.Images.Media.DISPLAY_NAME, "film$filmIndex.jpg")
-                    put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
-                }
-
-                val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-                uri?.let { imageUri ->
-                    val imageStream = contentResolver.openOutputStream(imageUri)
-                    imageStream?.use { imageOutputStream ->
-                        bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, imageOutputStream)
-                        // Close the output stream
-                        imageOutputStream.close()
-                    }
-                    // Retrieve the ID of the saved image
-                    val imageId = ContentUris.parseId(imageUri)
-                    FilmDataSource.films[filmIndex].imageResId = imageId.toInt()
-                    FilmDataSource.films[filmIndex].bitmapImage = bitmapImage
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-        }*/
     }
-
-    /*private fun saveImage() { // Prueba inicial de guardado de imagen por id (DESCARTADO)
-        var imageName = "film$filmIndex.jpg" // System.currentTimeMillis
-        var fos: OutputStream? = null
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            this.contentResolver?.also { resolver ->
-                val contentValues = ContentValues().apply {
-                    put(MediaStore.MediaColumns.DISPLAY_NAME, imageName)
-                    put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
-                    put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES)
-                }
-                val imageUri: Uri? = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-                fos = imageUri?.let {
-                    resolver.openOutputStream(it)
-                }
-            }
-        } else {
-            val imagesDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-            val image = File(imagesDirectory, imageName)
-            fos = FileOutputStream(image)
-        }
-        var fd = fos?.use {
-            bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, it)
-        }
-    }*/
 
     private fun setFilmData(filmIndex: Int) {
         if (filmIndex == -1)
@@ -235,6 +183,23 @@ class FilmEditActivity : AppCompatActivity() {
                 }
             }
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                val returnIntent = Intent(this@FilmEditActivity, FilmListActivity::class.java)
+                // Si se usan en conjunto estas FLAGS se evita el efecto de "reseteo de pantalla"
+                returnIntent.flags = (Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                startActivity(returnIntent)
+            }
+        }
+        return true
     }
 }
