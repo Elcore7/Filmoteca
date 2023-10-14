@@ -79,17 +79,19 @@ class FilmListActivity : AppCompatActivity() {
 
     private fun deleteSelectedItems() {
         // Obtener items de selectedItems
-        for (i in selectedItems) {
-            eraseFilm(i)
-        }
+        eraseSelectedFilms()
         // Eliminar elementos en la lista de seleccionados
         selectedItems.clear()
         adaptador.notifyDataSetChanged();
     }
 
-    private fun eraseFilm(index: Int) {
-        var filmListCopy = FilmDataSource.films
-        FilmDataSource.films.remove(filmListCopy[index])
+    private fun eraseSelectedFilms() {
+        var filmListCopy = FilmDataSource.films.toMutableList()
+
+        for (i in selectedItems) {
+            FilmDataSource.films.remove(filmListCopy[i])
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
