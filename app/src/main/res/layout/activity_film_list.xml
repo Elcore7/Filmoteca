@@ -6,19 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".FilmListActivity">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="146dp"
-        android:layout_height="47dp"
-        android:layout_marginBottom="68dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.815"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list"
-        app:layout_constraintVertical_bias="0.151" />
-
-    <Button
+    <!--<Button
         android:id="@+id/alternativeList"
         android:layout_width="146dp"
         android:layout_height="47dp"
@@ -29,7 +17,19 @@
         app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button3"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0" />-->
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="146dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list"
+        app:layout_constraintVertical_bias="0.175" />
 
     <TextView
         android:id="@+id/textViewSaveState"
@@ -48,8 +48,8 @@
 
     <ListView
         android:id="@+id/list"
-        android:layout_width="312dp"
-        android:layout_height="332dp"
+        android:layout_width="match_parent"
+        android:layout_height="368dp"
         android:layout_marginTop="76dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
