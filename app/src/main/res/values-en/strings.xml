@@ -25,4 +25,5 @@
     <string name='CANCELAR'>Cancel</string>
     <string name='NO_COMPATIBLE'>Not compatible with your device</string>
     <string name='SELECCIONE_IMAGEN'>Select an image</string>
+    <string name='ANYADIR_PEL'>Add film</string>
 </resources>

@@ -7,6 +7,8 @@ import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.NavUtils
@@ -39,20 +41,6 @@ class FilmDataActivity : AppCompatActivity() {
         filmIndex = intent.getIntExtra("FILM_INDEX", -1)
 
         setFilmData(filmIndex)
-
-        /*EXTRA_FILM_TITLE = intent.getStringExtra("TITULO_PELICULA").toString();
-
-        binding.textViewTitle.text = EXTRA_FILM_TITLE*/
-
-        /*binding.buttonImdb.setOnClickListener{ // Ver en IMDB
-            // val dataIntent = Intent(this@FilmDataActivity, FilmDataActivity::class.java)
-            // dataIntent.putExtra("TITULO_PELICULA", "Pelicula relacionada")
-            val viewIntent = Intent(Intent.ACTION_VIEW,
-                Uri.parse("https://www.imdb.com/title/tt0088763/"))
-            if(viewIntent.resolveActivity(packageManager) != null) {
-                startActivity(viewIntent)
-            }
-        }*/
 
         binding.buttonEdit.setOnClickListener{ // Editar
             val editIntent = Intent(this@FilmDataActivity, FilmEditActivity::class.java)
@@ -124,7 +112,21 @@ class FilmDataActivity : AppCompatActivity() {
             else ->
                 super.onActivityResult(requestCode, resultCode, data)
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+            }
+        }
+        return true
     }
 
 }
