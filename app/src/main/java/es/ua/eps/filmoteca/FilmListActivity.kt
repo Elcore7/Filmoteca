@@ -121,7 +121,6 @@ class FilmListActivity : AppCompatActivity() {
     private fun setMenu() {
         actionBar?.setHomeButtonEnabled(true)
         actionBar?.setDisplayHomeAsUpEnabled(true)
-
     }
 
     private fun loadImagesToObjects() {
