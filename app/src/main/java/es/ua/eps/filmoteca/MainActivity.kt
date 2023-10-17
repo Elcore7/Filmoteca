@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         for (filmAux: Film in FilmDataSource.films) {
             filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
         }
+        var fragment = supportFragmentManager.findFragmentById(R.id.film_data_fragment)
+        if (fragment != null) {
+            (fragment as FilmDataFragment).updateImage()
+        }
     }
 
     // Menú

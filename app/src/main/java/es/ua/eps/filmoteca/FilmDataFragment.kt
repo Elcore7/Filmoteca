@@ -74,7 +74,7 @@ class FilmDataFragment : Fragment() {
 
         view?.findViewById<Button>(R.id.buttonEdit)?.setOnClickListener {
             val editIntent = Intent(activity, FilmEditActivity::class.java)
-            editIntent.putExtra("FILM_INDEX", pos)
+            editIntent.putExtra("FILM_INDEX", filmIndex)
             if(Build.VERSION.SDK_INT >= 30) {
                 startForResult.launch(editIntent)
             }
@@ -121,5 +121,13 @@ class FilmDataFragment : Fragment() {
         }
 
         filmIndex = index
+    }
+
+    public fun updateImage() { // Funcion auxiliar para actualizar la imagen al comienzo (Si existe pantalla grande)
+        if (filmIndex != null) {
+            view?.findViewById<ImageView>(R.id.imageViewFilm)?.setImageBitmap(FilmDataSource.films[filmIndex].bitmapImage)
+        } else {
+            view?.findViewById<ImageView>(R.id.imageViewFilm)?.setImageBitmap(BitmapFactory.decodeResource(resources,R.drawable.default_film_image))
+        }
     }
 }
