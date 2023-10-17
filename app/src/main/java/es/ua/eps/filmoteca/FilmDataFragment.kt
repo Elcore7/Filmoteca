@@ -4,9 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -32,6 +36,7 @@ class FilmDataFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         var pos: Int? = arguments?.getInt(PARAM_POSITION);
         if (pos == null)
             pos = 0
@@ -78,6 +83,8 @@ class FilmDataFragment : Fragment() {
                 startActivityForResult(editIntent, FilmDataActivity.MOVIE_RESULT)
             }
         }
+
+        view?.findViewById<Button>(R.id.buttonReturnMainMenu)?.visibility = View.GONE
     }
 
     public fun getFilmIndex() : Int {

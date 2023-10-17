@@ -63,8 +63,25 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
     // Menú
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_list, menu)
-        return true
+        var currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container)
+        if (currentFragment != null) { // Pantalla pequeña
+            when (currentFragment) {
+                is FilmListFragment -> {
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                    supportActionBar?.setDisplayShowHomeEnabled(false)
+                    menuInflater.inflate(R.menu.menu_list, menu)
+                }
+                is FilmDataFragment -> {
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    supportActionBar?.setDisplayShowHomeEnabled(true)
+                }
+                // Agrega más casos según tus fragmentos
+            }
+            return true
+        } else {
+            menuInflater.inflate(R.menu.menu_list, menu)
+            return true
+        }
     }
 
     override fun onOptionsItemSelected(elemento: MenuItem): Boolean {
@@ -76,6 +93,9 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
             R.id.aboutUs -> {
                 val aboutIntent = Intent(this@MainActivity, AboutActivity::class.java)
                 startActivity(aboutIntent)
+            }
+            android.R.id.home -> {
+                onBackPressed()
             }
         }
         return false
