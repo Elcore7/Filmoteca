@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         loadImagesToObjects()
 
         if (savedInstanceState != null) return
@@ -28,7 +27,12 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         val listFragment = FilmListFragment()
         listFragment.arguments = intent.extras
 
-        supportFragmentManager.beginTransaction().add(R.id.fragment_container, listFragment).commit()
+        if (binding.fragmentContainer != null) {
+            supportFragmentManager.beginTransaction().add(R.id.fragment_container, listFragment)
+                .addToBackStack(null).commit()
+        } else {
+
+        }
     }
 
     override fun onItemSelected(position: Int) {
@@ -100,8 +104,18 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         actualizarLista()
     }
 
-    private fun actualizarLista() {
-        var fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as FilmListFragment?
-        (fragment?.listAdapter as FilmListAdapter).notifyDataSetChanged()
+    public fun actualizarLista() {
+        try {
+            var fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as FilmListFragment?
+            if (fragment != null) {
+                (fragment?.listAdapter as FilmListAdapter).notifyDataSetChanged()
+            } else {
+                var fragmentListBig = supportFragmentManager.findFragmentById(R.id.film_list_fragment) as FilmListFragment?
+                (fragmentListBig?.listAdapter as FilmListAdapter).notifyDataSetChanged()
+            }
+        } catch (e: Exception) { // Si no existe el ListFragment, entonces vendrá del dataFragment
+            var fragment = supportFragmentManager.findFragmentById(R.id.fragment_container) as FilmDataFragment?
+            fragment?.setFilm(fragment.getFilmIndex())
+        }
     }
 }

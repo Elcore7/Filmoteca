@@ -3,14 +3,9 @@ package es.ua.eps.filmoteca
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.ListView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.ListFragment
-import androidx.recyclerview.widget.DiffUtil
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
-import es.ua.eps.filmoteca.classes.Film
-import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
 import es.ua.eps.filmoteca.sources.FilmDataSource
 
 class FilmListFragment : ListFragment() {
