@@ -94,7 +94,10 @@ class FilmDataFragment : Fragment() {
     public fun setFilm(index: Int) {
         val filmData = FilmDataSource.films[index]
 
-        val textTitle = view?.findViewById<TextView>(R.id.textViewTitle)
+        view?.findViewById<Button>(R.id.buttonEdit)?.visibility = View.VISIBLE
+        view?.findViewById<Button>(R.id.buttonImdb)?.visibility = View.VISIBLE
+
+        // view?.findViewById<TextView>(R.id.textViewSaveState)?.text = ""
 
         view?.findViewById<TextView>(R.id.textViewTitle)?.text = filmData.title
         view?.findViewById<TextView>(R.id.textViewDirector)?.text = filmData.director
@@ -128,6 +131,15 @@ class FilmDataFragment : Fragment() {
             view?.findViewById<ImageView>(R.id.imageViewFilm)?.setImageBitmap(FilmDataSource.films[filmIndex].bitmapImage)
         } else {
             view?.findViewById<ImageView>(R.id.imageViewFilm)?.setImageBitmap(BitmapFactory.decodeResource(resources,R.drawable.default_film_image))
+        }
+    }
+
+    public fun updateView() {
+        if (filmIndex < FilmDataSource.films.size) {
+            setFilm(filmIndex)
+        } else {
+            view?.findViewById<Button>(R.id.buttonEdit)?.visibility = View.GONE
+            view?.findViewById<Button>(R.id.buttonImdb)?.visibility = View.GONE
         }
     }
 }

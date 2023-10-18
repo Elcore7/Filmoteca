@@ -3,6 +3,7 @@ package es.ua.eps.filmoteca
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ListView
 import androidx.fragment.app.ListFragment
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
@@ -13,7 +14,8 @@ class FilmListFragment : ListFragment() {
     var callback: OnItemSelectedListener? = null
 
     interface OnItemSelectedListener {
-        fun onItemSelected(position: Int)
+        fun onItemSelected(position: Int, view: View)
+        fun onLongItemSelected(position: Int, view: View)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,15 @@ class FilmListFragment : ListFragment() {
         setHasOptionsMenu(true)
         val adapter = FilmListAdapter(activity, R.layout.activity_film_list_item, FilmDataSource.films)
         listAdapter = adapter
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        listView.onItemLongClickListener =
+            AdapterView.OnItemLongClickListener { parent, view, position, id ->
+                callback?.onLongItemSelected(position, view)
+                true
+            }
     }
 
     override fun onAttach(context: Context) {
@@ -37,7 +48,7 @@ class FilmListFragment : ListFragment() {
 
     override fun onListItemClick(l: ListView, v: View, position: Int, id: Long) {
         // super.onListItemClick(l, v, position, id)
-        callback?.onItemSelected(position)
+        callback?.onItemSelected(position, v)
     }
 
 }
