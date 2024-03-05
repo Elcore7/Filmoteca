@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         if (binding.fragmentContainer != null) {
             supportFragmentManager.beginTransaction().add(R.id.fragment_container, listFragment)
                 .addToBackStack(null).commit()
-        } else {
-
         }
     }
 

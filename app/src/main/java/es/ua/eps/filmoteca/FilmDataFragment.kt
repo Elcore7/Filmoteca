@@ -78,6 +78,10 @@ class FilmDataFragment : Fragment() {
                 startActivityForResult(editIntent, FilmDataActivity.MOVIE_RESULT)
             }
         }
+
+        view?.findViewById<Button>(R.id.buttonReturnMainMenu)?.setOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
     }
 
     public fun getFilmIndex() : Int {
