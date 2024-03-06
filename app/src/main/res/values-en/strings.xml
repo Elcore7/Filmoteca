@@ -6,7 +6,7 @@
     <string name='VOLVER'>Go back</string>
     <string name='NO_FUNC_ERROR'>Not implemented yet</string>
     <string name='VER_PELICULA'>Watch film %1$s</string>
-    <string name='ACERCA_DE'>About us</string>
+    <string name='ACERCA_DE'>About</string>
     <string name='SELECCIONA_OPCION'>Choose an option</string>
     <string name='DIRECTOR'>Director</string>
     <string name='ANYO'>Year</string>
@@ -26,4 +26,6 @@
     <string name='NO_COMPATIBLE'>Not compatible with your device</string>
     <string name='SELECCIONE_IMAGEN'>Select an image</string>
     <string name='ANYADIR_PEL'>Add film</string>
+    <string name='CERRAR_SESION'>Close session</string>
+    <string name='DESCONECTAR_CUENTA'>Disconnect account</string>
 </resources>

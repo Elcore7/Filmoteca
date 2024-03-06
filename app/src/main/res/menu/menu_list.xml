@@ -5,6 +5,14 @@
         android:title="@string/ANYADIR_PEL">
     </item>
     <item
+        android:id="@+id/closeSession"
+        android:title="@string/CERRAR_SESION">
+    </item>
+    <item
+        android:id="@+id/disconnectAccount"
+        android:title="@string/DESCONECTAR_CUENTA">
+    </item>
+    <item
         android:id="@+id/aboutUs"
         android:title="@string/ACERCA_DE">
     </item>

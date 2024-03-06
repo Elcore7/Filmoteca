@@ -10,61 +10,83 @@
         android:id="@+id/buttonReturnMainMenu"
         android:layout_width="168dp"
         android:layout_height="42dp"
-        android:layout_marginTop="516dp"
+        android:layout_marginBottom="30dp"
         android:fontFamily="sans-serif"
         android:text="@string/VOLVER"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSupport"
         android:layout_width="168dp"
         android:layout_height="42dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif"
         android:text="@string/SOPORTE"
+        app:layout_constraintBottom_toTopOf="@+id/buttonReturnMainMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="228dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="140dp"
-        android:text="@string/PATRICK"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.316"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="156dp"
-        android:layout_height="285dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/patrick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.139" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonWeb"
         android:layout_width="168dp"
         android:layout_height="42dp"
-        android:layout_marginTop="412dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="sans-serif"
         android:onClick="irWeb"
         android:text="@string/IR_WEB"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSupport"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="221dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="40dp"
+        android:text="User data"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/userId"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="44dp"
+        android:text="Id"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/userId"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/userMail"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginTop="20dp"
+        android:text="Email"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/userName"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

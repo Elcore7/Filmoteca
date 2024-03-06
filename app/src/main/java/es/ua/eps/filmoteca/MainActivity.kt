@@ -8,7 +8,6 @@ import android.view.Menu
 import android.view.MenuItem
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
 import es.ua.eps.filmoteca.classes.Film
-import es.ua.eps.filmoteca.databinding.ActivityFilmListBinding
 import es.ua.eps.filmoteca.databinding.ActivityMainBinding
 import es.ua.eps.filmoteca.sources.FilmDataSource
 
@@ -75,6 +74,18 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
                 val aboutIntent = Intent(this@MainActivity, AboutActivity::class.java)
                 startActivity(aboutIntent)
             }
+            R.id.closeSession -> {
+                DataUser.googleSignInClient?.signOut()
+                val loginIntent = Intent(this@MainActivity, LoginActivity::class.java)
+                loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(loginIntent)
+            }
+            R.id.disconnectAccount -> {
+                DataUser.googleSignInClient?.revokeAccess()
+                val loginIntent = Intent(this@MainActivity, LoginActivity::class.java)
+                loginIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(loginIntent)
+            }
         }
         return false
     }
@@ -100,6 +111,10 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
     override fun onRestart() { // Para aplicar los cambios al volver a esta "activity" [onResume era otra posibilidad]
         super.onRestart()
         actualizarLista()
+    }
+
+    override fun onBackPressed() { // Finaliza la app (Evitamos volver al activity de login)
+        finish()
     }
 
     public fun actualizarLista() {

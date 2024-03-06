@@ -26,4 +26,6 @@
     <string name='NO_COMPATIBLE'>No es compatible con tu dispositivo</string>
     <string name='SELECCIONE_IMAGEN'>Seleccione una imagen</string>
     <string name='ANYADIR_PEL'>Añadir película</string>
+    <string name='CERRAR_SESION'>Cerrar sesión</string>
+    <string name='DESCONECTAR_CUENTA'>Desconectar cuenta</string>
 </resources>

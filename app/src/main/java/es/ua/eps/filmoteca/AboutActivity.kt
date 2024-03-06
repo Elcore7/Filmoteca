@@ -1,6 +1,7 @@
 package es.ua.eps.filmoteca
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,8 @@ class AboutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setUpAccountInfo()
 
         binding.buttonWeb.setOnClickListener{
             //Toast.makeText(this, resources.getString(R.string.NO_FUNC_ERROR), Toast.LENGTH_LONG).show()
@@ -41,6 +44,12 @@ class AboutActivity : AppCompatActivity() {
             //Toast.makeText(this, resources.getString(R.string.NO_FUNC_ERROR), Toast.LENGTH_LONG).show()
             finish()
         }
+    }
+
+    fun setUpAccountInfo() {
+        binding.userId.text = "ID: " + DataUser.account.id
+        binding.userName.text = "Name: " + DataUser.account.displayName
+        binding.userMail.text = "Email: " + DataUser.account.email
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
