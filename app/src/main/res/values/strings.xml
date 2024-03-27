@@ -28,4 +28,5 @@
     <string name='ANYADIR_PEL'>Añadir película</string>
     <string name='CERRAR_SESION'>Cerrar sesión</string>
     <string name='DESCONECTAR_CUENTA'>Desconectar cuenta</string>
+    <!--<string name="msg_token_fmt">Token de registro FCM: %1$s</string>-->
 </resources>

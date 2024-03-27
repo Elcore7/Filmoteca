@@ -19,6 +19,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.Constants.MessagePayloadKeys.SENDER_ID
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
+import com.google.firebase.messaging.messaging
+import com.google.firebase.messaging.remoteMessage
 import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityFilmFormEditBinding
 import es.ua.eps.filmoteca.sources.FilmDataSource
@@ -68,6 +75,7 @@ class FilmEditActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK)
             if (filmIndex != -1) {
                 saveFilm(filmIndex)
+                enviarFirebaseNotif()
             }
             finish()
         }
@@ -201,5 +209,26 @@ class FilmEditActivity : AppCompatActivity() {
             }
         }
         return true
+    }
+
+    // Mensaje de Firebase
+    fun enviarFirebaseNotif() { // TODO: No parece enviar los mensajes correctamente
+        var topic = "movies"
+
+        val message = RemoteMessage.Builder(topic)
+            .setMessageId(Integer.toString((0..Int.MAX_VALUE).random()))
+            .setData(mapOf("title" to "New film",
+                "body" to binding.editTextTitle.text.toString())) // Datos adicionales si es necesario
+            .build()
+        FirebaseMessaging.getInstance().send(message)
+        // Firebase.messaging.send(message)
+        /*FirebaseMessaging.getInstance().send(
+            RemoteMessage.Builder(topic)
+            .setMessageId(java.lang.Integer.toString((0..Int.MAX_VALUE).random())) // ID único del mensaje
+            .setData(mapOf(
+                "title" to "New film",
+                "body" to binding.editTextTitle.text.toString()
+            ))
+            .build())*/
     }
 }
