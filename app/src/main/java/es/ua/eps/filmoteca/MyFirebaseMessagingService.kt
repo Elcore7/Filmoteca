@@ -96,6 +96,4 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         token = newToken
         Log.d(TAG, "Refreshed token: $token")
     }
-
-
 }

@@ -1,11 +1,15 @@
 package es.ua.eps.filmoteca
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.BitmapFactory
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import es.ua.eps.filmoteca.adapters.FilmListAdapter
 import es.ua.eps.filmoteca.classes.Film
 import es.ua.eps.filmoteca.databinding.ActivityMainBinding
@@ -29,6 +33,15 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
         if (binding.fragmentContainer != null) {
             supportFragmentManager.beginTransaction().add(R.id.fragment_container, listFragment)
                 .addToBackStack(null).commit()
+        }
+
+        // Permiso notif. push
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(
+                    this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf("android.permission.POST_NOTIFICATIONS"), 101)
+            }
         }
     }
 
