@@ -125,7 +125,9 @@ class FilmListActivity : AppCompatActivity() {
 
     private fun loadImagesToObjects() {
         for (filmAux: Film in FilmDataSource.films) {
-            filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
+            if (filmAux.imageResId != -1) {
+                filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
+            }
         }
     }
 

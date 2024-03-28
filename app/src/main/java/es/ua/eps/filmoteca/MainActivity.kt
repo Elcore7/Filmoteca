@@ -66,7 +66,9 @@ class MainActivity : AppCompatActivity(), FilmListFragment.OnItemSelectedListene
 
     private fun loadImagesToObjects() {
         for (filmAux: Film in FilmDataSource.films) {
-            filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
+            if (filmAux.imageResId != -1) { // Para evitar que se rehaga el bitmap de aquellas peliculas que no vienen de serie
+                filmAux.bitmapImage = BitmapFactory.decodeResource(resources, filmAux.imageResId)
+            }
         }
     }
 

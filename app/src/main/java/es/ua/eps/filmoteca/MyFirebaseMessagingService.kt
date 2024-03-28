@@ -7,39 +7,56 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Build
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.google.firebase.messaging.messaging
+import es.ua.eps.filmoteca.classes.Film
+import es.ua.eps.filmoteca.sources.FilmDataSource
 import java.io.IOException
 import java.net.URL
+
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     lateinit var token: String
     val channelId = "movies"
 
+    // La notificacion recibida, tendrá los siguientes campos:
+    /*
+        title,
+        director,
+        year,
+        comment,
+        genre,
+        format,
+        imdb,
+        image,
+        action (Este puede ser: "create" o "delete")
+     */
     override fun onMessageReceived(remoteMessage: RemoteMessage) { // Mensaje entrante
-        val title = remoteMessage.notification?.title // Titulo y cuerpo de mensaje
+        /*val title = remoteMessage.notification?.title // Titulo y cuerpo de mensaje
         val body = remoteMessage.notification?.body
-        val imageUrl = remoteMessage.notification?.imageUrl
+        val imageUrl = remoteMessage.notification?.imageUrl*/
+        // val pruebaTitle = remoteMessage.data.getValue("title")
 
-        if (title != null && body != null) { // Si no son nulos, notificacion
-            showNotification(title, body, imageUrl)
-        }
+        showNotification(remoteMessage)
     }
 
-    private fun showNotification(title: String, body: String, imageUrl: Uri?) {
+    private fun showNotification(remoteMessage: RemoteMessage) {
         val notifId = 111;
+
+        val messageTitle = remoteMessage.notification?.title // Titulo del mensaje
+        val action = remoteMessage.data.getValue("action")
+
+        if ("create".equals(action)) { // Se añade la pelicula
+            anyadirPelicula(remoteMessage.data)
+        } else if ("delete".equals(action)) { // Se borra la pelicula (Solo se espera el nombre de la que hay que borrar)
+            remoteMessage.data.get("title")?.let { borrarPelicula(it) }
+        }
 
         // Crea un intent para abrir la aplicación cuando se toque la notificación
         val intent = Intent(this, MainActivity::class.java)
@@ -47,15 +64,15 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Crea la notificación
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setContentTitle(title)
-            .setContentText(body)
+            .setContentTitle(messageTitle)
+            .setContentText(remoteMessage.data.get("title"))
             .setSmallIcon(R.drawable.baseline_videocam_24) // Icono de la notificación (La misma usada en el Login)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true) // Cierra la notificación cuando se toca
 
-        imageUrl?.let { // Para la imagen
+        remoteMessage.data.get("image")?.let { // Para la imagen, si existe se muestra, si no, no
             try {
-                val bitmap = BitmapFactory.decodeStream(URL(imageUrl.toString()).openConnection().getInputStream())
+                val bitmap = BitmapFactory.decodeStream(URL(remoteMessage.data.get("image").toString()).openConnection().getInputStream())
                 notificationBuilder.setStyle(NotificationCompat.BigPictureStyle().bigPicture(bitmap))
             } catch (e: IOException) {
                 e.printStackTrace()
@@ -77,6 +94,51 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         // Muestra la notificación
         notificationManager.notify(notifId, notificationBuilder.build())
+    }
+
+    fun anyadirPelicula(data: MutableMap<String, String>) {
+        var newFilm: Film = Film()
+        newFilm.title = data.get("title") // Uso get en vez de getValue, ya que no me interesa lanzar excepción sino que simplemente el campo se a null
+        newFilm.director = data.get("director")
+        newFilm.year = data.get("year").toString().toInt()
+        newFilm.genre = data.get("genre").toString().toInt()
+        newFilm.format = data.get("format").toString().toInt()
+        newFilm.imageResId = -1
+        try {
+            val url = URL(data.get("image"))
+            val image = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            newFilm.bitmapImage = image
+        } catch (e: IOException) {
+            println(e)
+        }
+        newFilm.imdbUrl = data.get("imdb")
+        newFilm.comments = data.get("comment")
+
+        FilmDataSource.films.add(newFilm)
+    }
+
+    fun borrarPelicula(filmTitle: String) {
+        var found: Boolean = false
+        var iterator: Int = 0;
+        for (film in FilmDataSource.films) {
+            if (film.title == filmTitle) {
+                found = true
+                break
+            }
+            iterator++
+        }
+        // Otra forma seria haciendo uso de "removeIf" pero no lo uso para evitar que tener que controlar entre versiones, solución simple y ya
+        /*val condition = Predicate<Film> {
+            it.title == filmTitle
+        }*/
+        if (found) {
+            FilmDataSource.films.removeAt(iterator)
+            // FilmDataSource.films.removeIf(condition)
+        }
+    }
+
+    fun cargarMainIntent() {
+
     }
 
     fun askToken() {
