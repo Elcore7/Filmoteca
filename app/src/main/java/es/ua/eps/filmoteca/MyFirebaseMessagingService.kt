@@ -137,10 +137,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         }
     }
 
-    fun cargarMainIntent() {
-
-    }
-
     fun askToken() {
         FirebaseMessaging.getInstance().token
             .addOnCompleteListener(OnCompleteListener<String?> { task ->
